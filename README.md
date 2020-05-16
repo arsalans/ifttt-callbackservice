@@ -1,7 +1,15 @@
-# CallBackService serverless API
-The CallBackService project, created with [`aws-serverless-java-container`](https://github.com/awslabs/aws-serverless-java-container).
+# Ifttt CallBackService serverless API
 
-The starter project defines a simple `/ping` resource that can accept `GET` requests with its tests.
+If you need a call back to your webhook in the ifttt platform, you can use this webservice. You can see all the apis using the swagger ui:
+
+[`Swagger UI`](http://localhost:8080/swagger-ui.html)
+
+**`CallBackController`** contains the apis for scheduling the call back.
+**`PingController`** is more for debugging the service.
+
+The CallBackService project is created with [`aws-serverless-java-container`](https://github.com/awslabs/aws-serverless-java-container) using Spring Boot 2 maven arche type and Java 8.
+
+You can debug the project by pinging the service at `/ping` that accepts `GET` request.
 
 The project folder also includes a `template.yml` file. You can use this [SAM](https://github.com/awslabs/serverless-application-model) file to deploy the project to AWS Lambda and Amazon API Gateway or test in local with the [SAM CLI](https://github.com/awslabs/aws-sam-cli). 
 
@@ -46,7 +54,7 @@ Mounting com.amazonaws.serverless.archetypes.StreamLambdaHandler::handleRequest 
 Using a new shell, you can send a test ping request to your API:
 
 ```bash
-$ curl -s http://127.0.0.1:3000/ping | python -m json.tool
+$ curl -s http://127.0.0.1:8080/ping | python -m json.tool
 
 {
     "pong": "Hello, World!"
