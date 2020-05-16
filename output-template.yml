@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Spring Boot 2 API - com.iarchitect.iot.ifttt::CallBackService
+Globals:
+  Api:
+    EndpointConfiguration: REGIONAL
+Resources:
+  CallBackServiceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.iarchitect.iot.ifttt.handler.StreamLambdaHandler::handleRequest
+      Runtime: java8
+      CodeUri: s3://my-callback-app-bucket/fb6dd925ab0f2fad4dc64d341fbaf2a9
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 30
+      Events:
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+Outputs:
+  CallBackServiceApi:
+    Description: URL for application
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping
+    Export:
+      Name: CallBackServiceApi
