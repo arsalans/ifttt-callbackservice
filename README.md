@@ -15,7 +15,7 @@ You can use the SAM CLI to quickly build the project
 ```bash
 $ mvn archetype:generate -DartifactId=CallBackService -DarchetypeGroupId=com.amazonaws.serverless.archetypes -DarchetypeArtifactId=aws-serverless-jersey-archetype -DarchetypeVersion=1.5 -DgroupId=com.iarchitect.iot.ifttt -Dversion=1.0-SNAPSHOT -Dinteractive=false
 $ cd CallBackService
-$ sam build (Please use mvn clean package command to build.)
+$ sam build
 Building resource 'CallBackServiceFunction'
 Running JavaGradleWorkflow:GradleBuild
 Running JavaGradleWorkflow:CopyArtifacts
