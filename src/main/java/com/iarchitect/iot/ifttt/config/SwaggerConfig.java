@@ -3,6 +3,8 @@ package com.iarchitect.iot.ifttt.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
@@ -42,8 +44,13 @@ public class SwaggerConfig {
 
     @Bean
     public Docket iftttApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.iarchitect.iot.ifttt.controller")) //classpath for the REST controllers
+                .paths(PathSelectors.any())
+                .build();
 
-        return new Docket(DocumentationType.SWAGGER_2);
+//        return new Docket(DocumentationType.SWAGGER_2);
 
 //    return new Docket(DocumentationType.SWAGGER_2)
 //        .select()
