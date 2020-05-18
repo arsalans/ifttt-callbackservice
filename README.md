@@ -1,5 +1,7 @@
 # Ifttt CallBackService serverless API
 
+NOTE: Call backs do not work on AWS Lambda as background threads are not supported, please see the GCP version instead.
+
 If you need a call back to your webhook in the ifttt platform, you can use this webservice. You can see all the apis using the swagger ui:
 
 [`Swagger UI`](http://localhost:8080/swagger-ui.html)
