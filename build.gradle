@@ -1,32 +1,33 @@
 apply plugin: 'java'
 
 repositories {
-  jcenter()
-  mavenLocal()
-  mavenCentral()
+    jcenter()
+    mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
-  compile (
-          'org.springframework.boot:spring-boot-starter-web:2.2.6.RELEASE',
-          'com.amazonaws.serverless:aws-serverless-java-container-springboot2:[1.0,)',
-          'io.symphonia:lambda-logging:1.0.1',
-          'joda-time:joda-time:2.10.6',
-          'io.springfox:springfox-swagger-ui:2.9.2',
-          'io.springfox:springfox-swagger2:2.9.2'
-  )
+    compile(
+            'org.springframework.boot:spring-boot-starter-web:2.2.6.RELEASE',
+            'com.amazonaws.serverless:aws-serverless-java-container-springboot2:[1.0,)',
+            'io.symphonia:lambda-logging:1.0.3',
+            'joda-time:joda-time:2.10.6',
+            'io.springfox:springfox-swagger-ui:2.9.2',
+            'io.springfox:springfox-swagger2:2.9.2',
+            'com.google.guava:guava:28.0-jre'
+    )
 
-  testCompile("junit:junit:4.12")
+    testCompile("junit:junit:4.12")
 }
 
 task buildZip(type: Zip) {
-  from compileJava
-  from processResources
-  into('lib') {
-    from(configurations.compileClasspath) {
-      exclude 'tomcat-embed-*'
+    from compileJava
+    from processResources
+    into('lib') {
+        from(configurations.compileClasspath) {
+            exclude 'tomcat-embed-*'
+        }
     }
-  }
 }
 
 build.dependsOn buildZip
